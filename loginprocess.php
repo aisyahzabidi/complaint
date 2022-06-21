@@ -12,6 +12,7 @@ $sql1 = "SELECT * FROM user WHERE username = '$fuser'"; //username exist ke tak
 $result1 = mysqli_query($conn, $sql1); // run statement $sql1
 $row1 = mysqli_fetch_array($result1);
 $count1 = mysqli_num_rows($result1);
+$usertype = $row1['role'];
 
 if($count1 > 0) //username wujud
 {
@@ -19,7 +20,20 @@ if($count1 > 0) //username wujud
     {
         $_SESSION['fuser'] = session_id();
         $_SESSION['fuser'] = $fuser;
-        header('Location: homepage.php'); //page lepas login
+        if($usertype == '1')
+        {
+          header('Location: homepage.php'); //ADMIN
+        }
+        elseif($usertype == '2')
+        {
+          header('Location: homepagepublic.php'); //PUBLIC
+        }
+        else //OFFICER
+        {
+          header('Location: homepageofficer.php');
+
+        }
+        
 
     }
     else

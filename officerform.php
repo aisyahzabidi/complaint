@@ -24,7 +24,6 @@ $fuser=$_SESSION['fuser'];
     <link rel="stylesheet" href="style.css" />
     <title>CS443 Project</title>
 </head>
-
 <style>
 ul {
   list-style-type: none;
@@ -73,9 +72,9 @@ li a:hover {
             <!-- Notification dropdown -->
                 <!-- Avatar -->
                 <ul>
-  <li><a   href="homepage.php">Home</a></li>
-  <li><a  href="officerform.php">Register Officer</a></li>
-  <li><a class="active" href="complaintform.php">Complaint</a></li>
+  <li><a href="homepage.php">Home</a></li>
+  <li><a class="active" href="officerform.php">Register Officer</a></li>
+  <li><a href="complaintform.php">Complaint</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
                  
@@ -85,9 +84,6 @@ li a:hover {
         <!-- Container wrapper -->
     </nav>
 </header>
-<!--Main Navigation-->
-<!--Main Navigation-->
- 
 <!--Main Navigation-->
 
 <!--Main layout-->
@@ -106,51 +102,47 @@ li a:hover {
                     </div>   <!-- DEENAAAAAAA -->
 
                     <div class="card-content table-responsive p-2">
-                        <form method="POST" action="complaintprocess.php" enctype="multipart/form-data" class="row g-3">
-                            <h5 class="form-label">User Details</h5>
-                            <div class="col-md-6">
-                                <b><label for="fname" class="form-label">Name</label></b><br>
-                                <?php
-                             $sql4 = "SELECT * FROM user WHERE username='$fuser'";
-                              $result4 = mysqli_query($conn, $sql4);
-                              $row4=mysqli_fetch_array($result4);
-                              
-                            echo $row4['name'];
+                        <form method="POST" action="officerprocess.php" enctype="multipart/form-data" class="row g-3">
+                            <h5 class="form-label">Officer Details</h5>
                              
-                          
-                          ?>
-                                
-                            </div>
-                            <div class="col-md-6"> <!-- Stated kat form-->
-                                <b><label for="fphone" class="form-label">Phone Number</label></b><br>
-                                <?php
-                            
-                              
-                            echo $row4['phone']; 
-                          ?>
-                                
-                            </div>
-                            <hr/>
-                            <h5 class="form-label">Complaint Details</h5>
+                             
+                             
                             <div class="col-md-6">
-                                <label for="fdesc" class="form-label">Complaint Description</label>
-                                <input type="text" class="form-control" id="fdesc" name="fdesc" placeholder="Enter complaint details" required="">
+                                <label for="fusername" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="fusername" name="fusername" placeholder="Enter username" required="">
+                            </div> 
+
+                            <div class="col-md-6">
+                                <label for="fpwd" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="fpwd" name="fpwd" placeholder="Enter complaint details" required="">
+                            </div> 
+                            <div class="col-md-6">
+                                <label for="fname" class="form-label">Officer Name</label>
+                                <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter full name" required="">
+                            </div> 
+                            <div class="col-md-6">
+                                <label for="fphone" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" id="fphone" name="fphone" placeholder="Enter phone number" required="">
+                            </div> 
+                            <div class="col-md-6">
+                                <label for="femail" class="form-label">Email Address</label>
+                                <input type="text" class="form-control" id="femail" name="femail" placeholder="Enter email address" required="">
                             </div> 
 
                        
                             <div class="col-md-6">
-                                <label for="ftype" class="form-label">Complaint Type</label>
+                                <label for="ftype" class="form-label">Officer Type</label>
                                 <select id="ftype" class="form-select" name="ftype" required="">
-                                <option disabled selected>Choose complaint type</option>
-                                <option value="1">Jalan Raya</option>
-                                <option value="2">Lampu Isyarat</option>
-                                <option value="3">Lampu Isyarat</option>  <!---TAMBAH JENIS COMPLAINT----->
+                                <option disabled selected>Choose officer type</option>
+                                <option value="3">Officer Jalan Raya</option>
+                                <option value="4">Officer Lampu Isyarat</option>
+                                  <!---TAMBAH JENIS OFFICER----->
                             </div>
                                
                             </select><br><br><br>
 </div>
 <div style="text-align: center;">
-                                <input type="submit" class="btn btn-primary" value="Submit complaint"></input>
+                                <input type="submit" class="btn btn-primary" value="Register Officer"></input>
                                 
                             </div> 
                         </form>

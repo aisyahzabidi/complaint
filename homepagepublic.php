@@ -1,4 +1,4 @@
-<?php    //HOMEPAGE ADMIN
+<?php 
 include ('complaintsession.php');
   if(!session_id())
   {
@@ -6,6 +6,10 @@ include ('complaintsession.php');
   }
 include('dbconnect.php');
  $fuser=$_SESSION['fuser'];
+ $sql9 = "SELECT * FROM user WHERE username='$fuser'";
+                    $result9 = mysqli_query($conn, $sql9);
+                    $row9 = mysqli_fetch_array($result9);
+                    $usertype = $row9['role']; //role kepada current user
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +73,8 @@ li a:hover {
                 <!-- Avatar -->
                 <ul>
   <li><a class="active" href="homepage.php">Home</a></li>
-  <li><a href="officerform.php">Register Officer</a></li>
+ 
+  <li><a href="complaintform.php">Complaint</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
                  
@@ -101,28 +106,12 @@ li a:hover {
                     <div class="alert alert-info text-center" style="font-size: 15px;text-align: center;color: red;"><?php echo "Failed!"; ?></div> <?php } ?>
                     <div class="card-header card-header-text">
 
-                        <h4 class="card-title">Submitted Complaints (Admin Page)
+                        <h4 class="card-title">Submitted Complaints by <?php echo$row9['name']; ?>
                     &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
 
-                    <?php 
-                    $sql9 = "SELECT * FROM user WHERE username='$fuser'";
-                    $result9 = mysqli_query($conn, $sql9);
-                    $row9 = mysqli_fetch_array($result9);
-                    $usertype = $row9['role']; //role kepada current user
-
-                    if($usertype == 1) //admin
-                    { ?>
-                    <a class="btn btn-outline-primary" href="officerform.php"><i class="fa-solid fa-square-plus me-2"></i>Register an officer </a></h4>
-                    <?php 
-                    }
-                    elseif($usertype == 2) //public
-                    {?>
+                   
+                    
                     <a class="btn btn-outline-primary" href="complaintform.php"><i class="fa-solid fa-square-plus me-2"></i>Make a complaint </a>
-                    <?php }  
-                    else //officer (usertype = 3 atau 4)
-                    {
-
-                    }?>
                     
                     
                 </div>
@@ -144,8 +133,9 @@ li a:hover {
                             <tbody>
                                 <?php 
 
-                                
-                                    $sql2 = "SELECT * FROM tb_complaint INNER JOIN user ON tb_complaint.comp_user = user.username "; 
+                                if($usertype==2) //public
+                                {
+                                    $sql2 = "SELECT * FROM tb_complaint INNER JOIN user ON tb_complaint.comp_user = user.username WHERE comp_user='$fuser' "; 
 $result2 = mysqli_query($conn, $sql2);
 while($row2 = mysqli_fetch_array($result2))
 {
@@ -171,13 +161,50 @@ while($row2 = mysqli_fetch_array($result2))
                                         echo "Completed";
 
                                     }
-                                }
+
                                      ?></td>
                                   
                         
                                 </tr>
-                             
-                                
+                               <?php }  
+                                }
+                                elseif($usertype==3)  //oficer jalan raya
+                                {
+                                    $sql7 = "SELECT * FROM tb_complaint INNER JOIN user ON tb_complaint.comp_user = user.username WHERE comp_type = '1' ";  //complaint pasal jalan raya
+$result7 = mysqli_query($conn, $sql7);
+while($row7 = mysqli_fetch_array($result7))
+{
+                                ?>
+                                <tr>
+                                    <td><?php echo $row7['comp_id']; ?></td>
+                                    <td><?php echo $row7['name']; ?></td>
+                                    <td><?php echo $row7['phone']; ?></td>
+                                    <td><?php echo $row7['comp_desc']; ?></td>
+                                    <td><?php 
+                                    $type = $row7['comp_type'];
+                                    $sql8 = "SELECT * FROM tb_complaint INNER JOIN tb_comptype ON tb_complaint.comp_type = tb_comptype.type_id WHERE tb_complaint.comp_type='$type'"; 
+                                    $result8 = mysqli_query($conn, $sql8);
+                                    $row8 = mysqli_fetch_array($result8);
+                                    echo $row8['type_desc']; ?></td>
+                                    <td><?php 
+                                    if($row7['comp_status']=='1')
+                                    {
+                                        echo "Pending";
+                                    }
+                                    else
+                                    {
+                                        echo "Completed";
+
+                                    }
+
+                                     ?></td>
+                                  
+                        
+                                </tr>
+                               <?php }  
+
+                                }?> 
+                                <!-- tambahkan complaint pasal lampu isyarat untuk officer lampu-->
                     
 
                             </tbody>
