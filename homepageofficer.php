@@ -74,7 +74,7 @@ li a:hover {
                 <!-- Avatar -->
                 <ul>
   <li><a class="active" href="homepage.php">Home</a></li>
-  <li><a href="officerform.php">Register Officer</a></li>
+  
    
   <li><a href="logout.php">Logout</a></li>
 </ul>
