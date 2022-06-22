@@ -12,7 +12,10 @@
         .wrapper{ width: 360px; padding: 20px; border:2px solid Black; }
     </style>
 </head>
-<body>
+<body
+style="background-color:LightGoldenRodYellow;">
+
+    <img src="jkr_logo.png" alt="" width="200" height="200">
     <div class="wrapper">
         <h2>Register Account</h2>
         <p>Please fill in your credentials to create account.</p>
