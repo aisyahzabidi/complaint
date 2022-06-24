@@ -12,7 +12,9 @@
         .wrapper{ width: 360px; padding: 20px; border: solid Black }
     </style>
 </head>
-<body>
+<body style="background-color:LightGoldenRodYellow;">
+
+<img src="logo-jkr.png" alt="" width="270" height="200">
     <div class="wrapper">
     <?php if (isset($_GET['logout'])) { ?>  <br>   
                     <div class="alert alert-info text-center text-danger" style="font-size: 15px;text-align: center; "><?php echo "You have logged out"; ?></div> <?php } ?>
