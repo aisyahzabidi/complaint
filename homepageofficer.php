@@ -94,7 +94,7 @@ $usertype = $row9['role']; //role kepada current user
 
     <!--Main layout-->
     <main style="margin-top: 10px; background-color:LightGoldenRodYellow;">
-        <div style="text-align:center; font: 14px sans-serif;">Jabatan Kerja Raya</div>
+        <div style="text-align:center;" style="font: 14px sans-serif;">Jabatan Kerja Raya</div>
         <div class="container pt-4" style="padding: 3rem;">
 
             <div class="row">
