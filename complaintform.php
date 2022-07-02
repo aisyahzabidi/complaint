@@ -91,7 +91,7 @@ $fuser = $_SESSION['fuser'];
   <!--Main Navigation-->
 
   <!--Main layout-->
-  <main style="margin-top: 10px; background-color:LightGoldenRodYellow;">
+  <main style="margin-top: 58px; background-color:LightGoldenRodYellow;">
     <div class="container pt-4" style="padding: 3rem;">
 
       <div class="row">
