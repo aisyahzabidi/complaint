@@ -29,6 +29,7 @@ $fuser = $_SESSION['fuser'];
 
     li {
         float: left;
+        text-align: right;
     }
 
     li a {
@@ -46,9 +47,13 @@ $fuser = $_SESSION['fuser'];
     .active {
         background-color: #757376;
     }
+
+    .img-container {
+        text-align: center;
+      }
 </style>
 
-<body>
+<body style="background-color:LightGoldenRodYellow;">
     <!--Main Navigation-->
     <header>
         <!-- Navbar -->
@@ -69,7 +74,7 @@ $fuser = $_SESSION['fuser'];
         <ul>
             <li><a class="active" href="homepage.php">Home</a></li>
             <li><a href="officerform.php">Register Officer</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="logout.php" >Logout</a></li>
         </ul>
 
 
@@ -85,9 +90,10 @@ $fuser = $_SESSION['fuser'];
 
     </header>
     <!--Main Navigation-->
-    <div>jkr</div>
+    
     <!--Main layout-->
-    <main style="margin-top: 10px;">
+    <main style="margin-top: 58px;">
+    <div class="img-container"> <img src="jkr_logo.png" alt="" width="150" height="150"> </div>
         <div class="container pt-4" style="padding: 3rem;">
 
             <div class="row">

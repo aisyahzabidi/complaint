@@ -23,6 +23,7 @@ $fuser=$_SESSION['fuser'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css" />
     <title>CS443 Project</title>
+
 </head>
 <style>
 ul {
@@ -51,9 +52,15 @@ li a:hover {
 .active {
   background-color: #757376;
 }
+
+.img-container {
+        text-align: center;
+      }
 </style>
 
-<body>
+<body style="background-color:LightGoldenRodYellow;">
+
+
 <!--Main Navigation-->
 <header>
         <!-- Navbar -->
@@ -87,7 +94,8 @@ li a:hover {
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main style="margin-top: 58px; background-color:LightGoldenRodYellow;">
+<main style="margin-top: 58px;">
+<div class="img-container"> <img src="jkr_logo.png" alt="" width="150" height="150"> </div>
     <div class="container pt-4" style="padding: 3rem;">
 
         <div class="row">

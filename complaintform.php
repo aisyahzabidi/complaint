@@ -52,9 +52,13 @@ $fuser = $_SESSION['fuser'];
   .active {
     background-color: #757376;
   }
+
+  .img-container {
+        text-align: center;
+      }
 </style>
 
-<body>
+<body style="background-color:LightGoldenRodYellow;">
   <!--Main Navigation-->
   <header>
     <!-- Navbar -->
@@ -91,7 +95,8 @@ $fuser = $_SESSION['fuser'];
   <!--Main Navigation-->
 
   <!--Main layout-->
-  <main style="margin-top: 58px; background-color:LightGoldenRodYellow;">
+  <main style="margin-top: 58px;">
+  <div class="img-container"> <img src="jkr_logo.png" alt="" width="150" height="150"> </div>
     <div class="container pt-4" style="padding: 3rem;">
 
       <div class="row">
