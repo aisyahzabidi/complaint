@@ -8,12 +8,12 @@ if(!session_id())
 include('dbconnect.php');
 $compid = $_REQUEST['id']; //dapatkan id yang homepageofficer pass
 
-$sql1 = "UPDATE tb_complaint SET comp_status='3' WHERE comp_id = '$compid'";
+$sql1 = "UPDATE tb_complaint SET comp_status='2' WHERE comp_id = '$compid'";
 $result1 = mysqli_query($conn, $sql1);
 
 if($result1)
 {
-    echo "<script> alert('Status changed to in progress! ');window.location.href = 'homepageofficer.php'</script>";
+    echo "<script> alert('Status changed to completed! ');window.location.href = 'homepageofficer.php'</script>";
 }
 else
 {
@@ -23,3 +23,5 @@ else
 }
 
 mysqli_close($conn);
+
+?>
