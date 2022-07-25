@@ -23,7 +23,6 @@ $fuser=$_SESSION['fuser'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css" />
     <title>CS443 Project</title>
-
 </head>
 <style>
 ul {
@@ -52,15 +51,9 @@ li a:hover {
 .active {
   background-color: #757376;
 }
-
-.img-container {
-        text-align: center;
-      }
 </style>
 
-<body style="background-color:LightGoldenRodYellow;">
-
-
+<body>
 <!--Main Navigation-->
 <header>
         <!-- Navbar -->
@@ -95,7 +88,6 @@ li a:hover {
 
 <!--Main layout-->
 <main style="margin-top: 58px;">
-<div class="img-container"> <img src="jkr_logo.png" alt="" width="150" height="150"> </div>
     <div class="container pt-4" style="padding: 3rem;">
 
         <div class="row">
@@ -105,9 +97,9 @@ li a:hover {
                     
                     <div class="card-header card-header-text">
 
-                        <h3 class="card-title">Complaint Form</h3>
+                        <h3 class="card-title">Officer Registration Form</h3>
 
-                    </div>   <!-- DEENAAAAAAA -->
+                    </div>   <!--  -->
 
                     <div class="card-content table-responsive p-2">
                         <form method="POST" action="officerprocess.php" enctype="multipart/form-data" class="row g-3">
@@ -122,7 +114,7 @@ li a:hover {
 
                             <div class="col-md-6">
                                 <label for="fpwd" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="fpwd" name="fpwd" placeholder="Enter complaint details" required="">
+                                <input type="password" class="form-control" id="fpwd" name="fpwd" placeholder="Enter password" required="">
                             </div> 
                             <div class="col-md-6">
                                 <label for="fname" class="form-label">Officer Name</label>
@@ -144,7 +136,8 @@ li a:hover {
                                 <option disabled selected>Choose officer type</option>
                                 <option value="3">Officer Jalan Raya</option>
                                 <option value="4">Officer Lampu Isyarat</option>
-                                  <!---TAMBAH JENIS OFFICER----->
+                                <option value="5">Officer Lampu Jalan</option>
+                                  <!---3 TYPES OF OFFICER----->
                             </div>
                                
                             </select><br><br><br>

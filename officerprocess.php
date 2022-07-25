@@ -15,11 +15,13 @@ $femail = $_POST['femail'];
 $ftype = $_POST['ftype'];
 
 $sql2 = "SELECT * FROM user WHERE username = '$fusername'"; //username exist ke tak
-$result2 = mysqli_query($conn, $sql2); // run statement $sql1
+$result2 = mysqli_query($conn, $sql2); 
 $row2 = mysqli_fetch_array($result2);
 $count2 = mysqli_num_rows($result2);
 
-if($count2 > 0) //username dah diguna
+ //username dah diguna
+ 
+if($count2 > 0) 
 {
     echo "<script> alert('Username has been taken! Please use a different username ');window.location.href = 'officerform.php'</script>";
      
@@ -32,7 +34,47 @@ $result1 = mysqli_query($conn, $sql1);
 
     if($result1)
     {
-        echo "<script> alert('Officer registered! ');window.location.href = 'homepage.php'</script>";
+        if($ftype=='3') //jalanraya
+        {
+            $sql3 = "INSERT INTO tb_officer (officer_username, officer_type) VALUES ('$fusername','1')";
+            $result3 = mysqli_query($conn,$sql3);
+            if($result3)
+            {
+                echo "<script> alert('Officer successfully registered! ');window.location.href = 'homepage.php'</script>";
+            }
+            else
+            {
+                echo "<script> alert('Failed to register officer! ');window.location.href = 'officerform.php'</script>";
+            }
+        }
+        elseif($ftype=='4') //lampu isyarat
+        {
+            $sql4 = "INSERT INTO tb_officer (officer_username, officer_type) VALUES ('$fusername','2')";
+            $result4 = mysqli_query($conn,$sql4);
+            if($result4)
+            {
+                echo "<script> alert('Officer successfully registered! ');window.location.href = 'homepage.php'</script>";
+            }
+            else
+            {
+                echo "<script> alert('Failed to register officer! ');window.location.href = 'officerform.php'</script>";
+            }
+
+        }
+        else //lampu jalan 
+        {
+            $sql5 = "INSERT INTO tb_officer (officer_username, officer_type) VALUES ('$fusername','3')";
+            $result5 = mysqli_query($conn,$sql5);
+            if($result5)
+            {
+                echo "<script> alert('Officer successfully registered! ');window.location.href = 'homepage.php'</script>";
+            }
+            else
+            {
+                echo "<script> alert('Failed to register officer! ');window.location.href = 'officerform.php'</script>";
+            }
+        }
+        
     //header("Location: homepage.php?success=true");
     }
     else

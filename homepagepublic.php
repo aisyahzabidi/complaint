@@ -158,7 +158,7 @@ while($row2 = mysqli_fetch_array($result2))
                                     }
                                     else
                                     {
-                                        echo "Completed";
+                                        echo "In Progress";
 
                                     }
 

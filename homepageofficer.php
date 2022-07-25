@@ -112,14 +112,26 @@ $usertype = $row9['role']; //role kepada current user
                             <div class="alert alert-info text-center" style="font-size: 15px;text-align: center;color: red;"><?php echo "Failed!"; ?></div> <?php } ?>
                         <div class="card-header card-header-text">
 
-                            <h4 class="card-title">Submitted Complaints
-                                <?php
-                                if ($usertype == '3') {
-                                    echo " (Jalan Raya)";
-                                } else {
-                                    echo " (Lampu Isyarat)";   //LABEL
-                                } ?>
-                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                        <h4 class="card-title">Submitted Complaints
+                            <?php 
+                            if($usertype=='3')
+                            {
+                                echo" (Jalan Raya)";
+                            }
+                            elseif ($usertype=='4')
+                            {
+                                echo" (Lampu Isyarat)";   //LABEL
+                            }
+                            else
+                            {
+                                echo" (Lampu Jalan)";   //#################################
+                            }
+
+                            echo" Assigned to Officer ";
+                            echo$fuser;
+
+                            ?>
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
 
 
 

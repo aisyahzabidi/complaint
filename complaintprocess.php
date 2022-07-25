@@ -16,7 +16,7 @@ VALUES ('$fuser','$fdesc','$ftype','1','$complaintLocation')"; //status: pending
 $result1 = mysqli_query($conn, $sql1);
 
 if ($result1) {
-  echo "<script> alert('Complaint submitted! ');window.location.href = 'homepage.php'</script>";
+  echo "<script> alert('Complaint submitted! ');window.location.href = 'homepagepublic.php'</script>";
   //header("Location: homepage.php?success=true");
 } else {
   echo "<script> alert('Failed to submit complaint! ');window.location.href = 'homepage.php?fail=true'</script>";
