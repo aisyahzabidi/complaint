@@ -126,7 +126,19 @@ $fuser = $_SESSION['fuser'];
                         <?php } else //officer (usertype = 3 atau 4)
                                 {
                                 } ?>
+      <!--ASSIGN OFFICERRRRRRRR
+                    
 
+                    $sqlpic = "SELECT * FROM user ORDER BY role_id  ASC";
+                    $result = mysqli_query($conn, $sqlpic);
+                    while($row = mysqli_fetch_array($result)) {
+                        if ($row["role_id"] == "3"){
+                            echo "<option value=\"{$row['role_id']}\" selected=\"selected\">{$row['role_name']}</option>";
+                    }
+                        else {
+                            echo "<option value=\"{$row['role_id']}\">{$row['role_name']}</option>";
+                        }       }
+                    ?> -->             
 
                         </div>
                         <div class="card-content table-responsive p-2">
@@ -142,7 +154,7 @@ $fuser = $_SESSION['fuser'];
                                         <th scope="col">Status</th>
                                         <th scope="col">Location</th>
                                         <th scope="col">Date and Time</th>
-
+                                        <th scope="col">Person In Charge</th>
 
                                         <th></th>
                                     </tr>
@@ -175,11 +187,157 @@ $fuser = $_SESSION['fuser'];
                                             </td>
                                             <td><?php echo $row2['comp_location'] ?? ""; ?></td>
                                             <td><?php echo $row2['comp_submitdate'] ?? ""; ?></td>
+                                            <td>
+                                     <?php
+                                     $comp = $row2['comp_id'];
+                                    $sqlpicx="SELECT * FROM tb_complaint JOIN tb_officer ON tb_complaint.comp_officer = tb_officer.officer_id JOIN user ON tb_officer.officer_username = user.username WHERE tb_complaint.comp_id = '$comp'" ;
+                                    $resultpicx = mysqli_query($conn, $sqlpicx);
+                                    $rowpicx = mysqli_fetch_array($resultpicx);
 
 
-                                        </tr><?php
+                                    $sqlpic3="SELECT * FROM user INNER JOIN tb_officer ON user.username = tb_officer.officer_username WHERE user.role = '3' AND tb_officer.officer_type = '1'" ;
+                                    $resultpic3 = mysqli_query($conn, $sqlpic3); //JALANRAYA
+
+                                    $sqlpic4="SELECT * FROM user INNER JOIN tb_officer ON user.username = tb_officer.officer_username WHERE user.role = '3' AND tb_officer.officer_type = '2'" ;
+                                    $resultpic4 = mysqli_query($conn, $sqlpic4);
+
+                                    $sqlpic5="SELECT * FROM user INNER JOIN tb_officer ON user.username = tb_officer.officer_username WHERE user.role = '3' AND tb_officer.officer_type = '3'" ;
+                                    $resultpic5 = mysqli_query($conn, $sqlpic5);
+                                    ?> 
+                                    
+                                    <form method="POST" action="assignofficer.php?id=<?php echo $row2['comp_id']; ?>" enctype="multipart/form-data">
+                                        
+                                        <select id="fofficer" class="form-select" name="fofficer" required="">
+                                            <?php
+
+                                    
+                                    if($row2['comp_type']=='1') //mula jalanraya
+                                    {
+                                        if($rowpicx['comp_officer']==NULL)
+                                        {
+                                            echo "<option selected disabled>Not Assigned</option>";
+                                            while ($rowpic3 = mysqli_fetch_array($resultpic3))
+                                            {
+                                            
+                                                echo "<option value=\"{$rowpic3['officer_id']}\">{$rowpic3['name']}</option>";
+
                                             }
-                                                ?>
+
+                                        }
+                                        
+                                        else
+                                        {
+                                            while ($rowpic3 = mysqli_fetch_array($resultpic3))
+                                            {
+                                            
+                                                if($rowpic3['officer_id'] == $rowpicx['comp_officer'] )
+                                                {
+                                                    echo "<option selected disabled value=\"{$rowpic3['username']}\">{$rowpic3['name']}</option>";
+
+
+                                                }
+                                                else
+                                                {
+                                                    echo "<option value=\"{$rowpic3['officer_id']}\">{$rowpic3['name']}</option>";
+
+                                                }
+                                        
+                                            }
+
+                                        }
+                                         
+                                    } //HABIS Jalan raya
+                                    
+                                    
+                                    elseif($row2['comp_type']=='2') //mula lampu isyarat
+                                    {
+                                        if($rowpicx['comp_officer']==NULL)
+                                        {
+                                            echo "<option selected disabled>Not Assigned</option>";
+                                            while ($rowpic4 = mysqli_fetch_array($resultpic4))
+                                            {
+                                            
+                                                echo "<option value=\"{$rowpic4['officer_id']}\">{$rowpic4['name']}</option>";
+
+                                            }
+
+                                        }
+                                        
+                                        else
+                                        {
+                                            while ($rowpic4 = mysqli_fetch_array($resultpic4))
+                                            {
+                                            
+                                                if($rowpic4['officer_id'] == $rowpicx['comp_officer'] )
+                                                {
+                                                    echo "<option selected disabled value=\"{$rowpic4['username']}\">{$rowpic4['name']}</option>";
+
+
+                                                }
+                                                else
+                                                {
+                                                    echo "<option value=\"{$rowpic4['officer_id']}\">{$rowpic4['name']}</option>";
+
+                                                }
+                                        
+                                            }
+
+                                        }
+                                         
+                                    } //habis lampu isyarat
+                                    
+                                    else
+                                    {
+                                        if($rowpicx['comp_officer']==NULL)
+                                        {
+                                            echo "<option selected disabled>Not Assigned</option>";
+                                            while ($rowpic5 = mysqli_fetch_array($resultpic5))
+                                            {
+                                            
+                                                echo "<option value=\"{$rowpic5['officer_id']}\">{$rowpic5['name']}</option>";
+
+                                            }
+
+                                        }
+                                        
+                                        else
+                                        {
+                                            
+                                            while ($rowpic5 = mysqli_fetch_array($resultpic5))
+                                            {
+                                            
+                                                if($rowpic5['officer_id'] == $rowpicx['comp_officer'] )
+                                                {
+                                                    echo "<option selected disabled value=\"{$rowpic5['username']}\">{$rowpic5['name']}</option>";
+
+
+                                                }
+                                                else
+                                                {
+                                                    echo "<option value=\"{$rowpic5['officer_id']}\">{$rowpic5['name']}</option>";
+
+                                                }
+                                        
+                                            }
+
+                                        }
+                                         
+                                    } //habis lampu JALAN
+                                    
+                            
+                                    //lampu jalan
+                                   
+                                    
+                                   
+                                        
+                                 ?> </select>
+                                </td> 
+                                <td>
+                                    <!-- <a class="btn btn-outline-danger" href="assignofficer.php?id=<?php echo $row2['comp_id']; ?>"><i class="fa fa-circle-xmark fa-lg"></i></a> -->
+                                    <input type="submit" class="btn btn-outline-success" value="Assign"></input>
+                            
+                                </td></form>
+                                </tr> <?php } ?>
 
 
 
